@@ -1,0 +1,42 @@
+[package]
+name = "examples"
+version = "0.1.0"
+authors = [
+    "jasonandmonte <jason.monte55@gmail.com>",
+]
+description = "Show fractals segmented by the paradigm used for their construction."
+license = "MIT"
+repository = "https://github.com/jasonandmonte/fractals.git"
+edition = "2024"
+
+[dev-dependencies]
+nannou = "0.19.0"
+rand = "0.9.2"
+num = "0.4.3"
+
+# Escape-time
+[[example]]
+name = "mandelbrot"
+path = "escape/mandelbrot.rs"
+[[example]]
+name = "mandelbrot_hi_res"
+path = "escape/mandelbrot_hi_res.rs"
+
+# IFS
+[[example]]
+name = "koch_curve"
+path = "ifs/koch_curve.rs"
+[[example]]
+name = "z2_heighway_dragon"
+path = "ifs/z2_heighway_dragon.rs"
+[[example]]
+name = "barnsley_fern"
+path = "ifs/barnsley_fern.rs"
+
+# Recursive
+[[example]]
+name = "sierpinski"
+path = "recursive/sierpinski.rs"
+
+
+
