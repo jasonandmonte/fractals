@@ -20,7 +20,7 @@ fn view(app: &App, _model: &Model, frame: Frame) {
     let win = window.rect();
 
     let draw = app.draw();
-    draw.background().color(WHITE);
+    draw.background().color(BLACK);
 
     let p1 = pt2(win.left()+1.0, win.bottom()+10.0);
     let p2 =  win.mid_top(); // pt2(0.0, win.mid_top());
@@ -41,19 +41,19 @@ fn sierpinski(draw: &Draw, p1: Point2, p2: Point2, p3: Point2, depth: u32) {
         .start(p1)
         .end(p2)
         .weight(1.0)
-        .color(BLACK);
+        .color(WHITE);
     // draw a line p2 -> p3
     draw.line()
         .start(p2)
         .end(p3)
         .weight(1.0)
-        .color(BLACK);
+        .color(WHITE);
     // draw a line p3 -> p1
     draw.line()
         .start(p3)
         .end(p1)
         .weight(1.0)
-        .color(BLACK);
+        .color(WHITE);
 
     let mp1 = pt2((p1.x+p2.x)/2.0, (p1.y+p2.y)/2.0);
     let mp2 = pt2((p2.x+p3.x)/2.0, (p2.y+p3.y)/2.0);
