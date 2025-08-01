@@ -14,6 +14,7 @@ where <file_name> is the example's file name without the .rs extension.
 
 | Fractal             | Construction | Image                                             |
 | ------------------- | ------------ | ------------------------------------------------- |
+| AJB Spiral Fern     | IFS          | ![AJB Spiral Fern](images/ajb_spiral_fern.png)    |
 | Barnsley Fern       | IFS          | ![Barnsley Fern](images/barnsley_fern.png)        |
 | Koch Curve          | IFS          | ![Koch Curve](images/koch_curve_ifs.png)          |
 | Sierpinski Triangle | Recursive    | ![Sierpinski Triangle](images/sierpinski.png)     | 

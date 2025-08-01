@@ -32,6 +32,9 @@ path = "ifs/z2_heighway_dragon.rs"
 [[example]]
 name = "barnsley_fern"
 path = "ifs/barnsley_fern.rs"
+[[example]]
+name = "ajb_spiral_fern"
+path = "ifs/ajb_spiral_fern.rs"
 
 # Recursive
 [[example]]
