@@ -41,14 +41,15 @@ struct Model {
 }
 
 fn main() {
-    nannou::app(model).size(1000, 1000).event(event).run();
+    nannou::app(model).size(1000, 1000).run();
 }
 
 fn model(app: &App) -> Model {
     let _window = app.new_window().view(view).build().unwrap();
     Model { _window, angle: 0.0 }
 }
-
+/*
+// Can be used for 
 fn event(_app: &App, model: &mut Model, event: Event) {
     if let Event::WindowEvent {simple, ..} = event {
         match simple {
@@ -64,6 +65,7 @@ fn event(_app: &App, model: &mut Model, event: Event) {
         }
     }
 }
+*/
 
 fn view(app: &App, model: &Model, frame: Frame) {
     // NOTE: Can use to wait of user input
@@ -84,8 +86,8 @@ fn view(app: &App, model: &Model, frame: Frame) {
     const ZOOM: f32 = 5.0;
 
 
-    // rect overwhelming more memory efficient: 200M+ rect vs 1M ellipse
-    for _ in 0..200_000_000 {
+    // rect overwhelming more memory efficient: 1B+ rect vs 1M ellipse
+    for _ in 0..(5_000_000_000 as u64) {
         let r = rng.random_range(0.0..1.0);
 
         z2_dragon(r, &mut p);
@@ -116,8 +118,8 @@ fn view(app: &App, model: &Model, frame: Frame) {
         let b = 1.0;
 
         // Lower alpha and brightness for outer spirals
-        let brightness = t;
-        let alpha = t.powf(0.1);
+        let brightness = 1.0;
+        let alpha = t.powf(0.25);
 
         let color = srgba(r * brightness, g * brightness, b * brightness, alpha);
 
