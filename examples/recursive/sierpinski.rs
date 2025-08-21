@@ -23,7 +23,7 @@ fn view(app: &App, _model: &Model, frame: Frame) {
     draw.background().color(BLACK);
 
     let p1 = pt2(win.left()+1.0, win.bottom()+10.0);
-    let p2 =  win.mid_top(); // pt2(0.0, win.mid_top());
+    let p2 =  win.mid_top();
     let p3 = pt2(win.right()-1.0, win.bottom()+10.0);
     let d = 10;
     sierpinski(&draw, p1, p2, p3, d);
