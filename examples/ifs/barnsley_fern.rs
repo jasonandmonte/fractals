@@ -72,11 +72,9 @@ fn view(app: &App, _model: &Model, frame: Frame) {
     let mut p = Point { x: 0.0, y: 0.0 };
 
     let mut counts: HashMap<String, u32> = HashMap::new();
-
     const ZOOM: f32 = 10.0;
 
-    // rect overwhelming more memory efficient: 200M rect vs 1M ellipse
-    for _ in 0..10_000_000 {
+    for _ in 0..30_000_000 {
         let r = rng.random_range(0.0..1.0);
 
         barnsley_fern(r, &mut p);
@@ -91,7 +89,7 @@ fn view(app: &App, _model: &Model, frame: Frame) {
     let max_count = *counts.values().max().unwrap_or(&1);
     println!("max_count: {}", max_count);
 
-    // Apply heatmap
+    // Apply heatmap coloring
     for (key, count) in &counts {
         // Parse "x,y" string back to float values
         let coords: Vec<&str> = key.split(',').collect();
@@ -100,12 +98,25 @@ fn view(app: &App, _model: &Model, frame: Frame) {
 
         let t = (*count as f32 / max_count as f32).powf(0.2);
 
-        let r = t;
-        let g = 1.0;
-        let b = t;
+        let mut r = 1.2 * t;
+        let mut g = (1.5 + 190.0/255.0) * t;
+        let mut b = 1.1 * t;
 
-        let brightness = t;
+        let mut brightness = 1.0;
         let alpha = t.powf(0.1);
+
+        if t > 0.4 {
+            brightness = 0.6;
+            r = 3.0 * t;
+            g = 3.0 * t;
+            b = 3.0 * t;
+        // inner edge
+        } else if t > 0.32 {
+            brightness = 0.7;
+            r = 2.0 * t;
+            g = (2.0 + 190.0/255.0) * t;
+            b = 2.0 * t;
+        }
 
         let color = srgba(r * brightness, g * brightness, b * brightness, alpha);
 
@@ -121,7 +132,7 @@ fn view(app: &App, _model: &Model, frame: Frame) {
 fn barnsley_fern(r:f32, p: &mut Point) {
     if r < 0.01 { // Stem
         p.affine_transformations(0.0, 0.0, 0.0, 0.16, 0.0, 0.0);
-        
+
     } else if r < 0.86 { // Successively smaller leaflets
         p.affine_transformations(0.85, 0.04, -0.04, 0.85, 0.0, 1.60);
         
